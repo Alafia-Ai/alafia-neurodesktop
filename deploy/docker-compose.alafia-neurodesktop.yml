@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  neurodesktop:
+    image: docker.io/library/alafia-neurodesktop:latest
+    #image: ghcr.io/neurodesk/neurodesktop/neurodesktop-multiarch:latest
+    #image: vnmd/neurodesktop:2023-10-12
+    privileged: true
+    user: root
+    shm_size: '16gb'
+    volumes:
+      - /opt/alafia-ai/alafia-neurodesktop/deploy/neurodesktop-storage:/neurodesktop-storage
+    environment:
+      - JUPYTER_TOKEN=alafiatoken1234verysecure
+      #      - NEURODESKTOP_VERSION=2023-10-12
+      - NB_UID=1000
+      - NB_GID=1000
+    ports: 
+      - 8888:8888
+    networks:
+      - caddy
+    labels:
+      caddy: neurodesktop.alafia
+      caddy.reverse_proxy: "{{upstreams 8888}}"
+      caddy.tls: "internal"
+
+networks:
+  caddy:
+    external: true

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Alafia Neurodesktop
+Terminal=false
+Icon=/opt/alafia-ai/alafia-neurodesktop/deploy/alafia-neurodesktop.svg
+Exec=/opt/alafia-ai/alafia-neurodesktop/deploy/alafia-neurodesktop.sh
